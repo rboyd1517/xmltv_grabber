@@ -1,0 +1,5 @@
+# PyCharm config
+/.idea/
+
+# Script output
+/output.xml
