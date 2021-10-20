@@ -16,7 +16,7 @@ TIMESPAN_SECONDS = TIMESPAN_HOURS * 3600
 qs = {'country': 'USA', 'headendId': 'lineupId', 'timespan': TIMESPAN_HOURS, 'postalCode': 66062}
 
 t_start = int(time.time() // 1800) * 1800
-t_end = t_start + 14 * 24 * 60 * 60
+t_end = t_start + 15 * 24 * 60 * 60
 
 print(t_start, t_end)
 
