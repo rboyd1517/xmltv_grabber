@@ -43,6 +43,28 @@ for t in range(t_start, t_end, TIMESPAN_SECONDS):
             title.text = event['program']['title']
             desc = ElementTree.SubElement(program, 'desc')
             desc.text = event['program']['shortDesc']
+            episode_num = ElementTree.SubElement(program, 'episode-num')
+            episode_num.set('system', 'xmltv_ns')
+            season = event['program']['season']
+            if season is None:
+                season_str = ""
+            else:
+                season_str = str(int(season) - 1)
+            episode = event['program']['episode']
+            if episode is None:
+                episode_str = ""
+            else:
+                episode_str = str(int(episode) - 1)
+            episode_num.text = f"{season_str}.{episode_str}."
+            episode_title = ElementTree.SubElement(program, 'sub-title')
+            episode_title.set('lang', 'en')
+            episode_title.text = event['program']['episodeTitle']
+            rating = ElementTree.SubElement(program, 'rating')
+            rating.text = event['rating']
+            if event['rating'] in ('TV-Y', 'TV-Y7', 'TV-Y7-FV', 'TV-G', 'TV-PG', 'TV-14', 'TV-MA'):
+                rating.set('system', 'VCHIP')
+            elif event['rating'] in ('G', 'PG', 'PG-13', 'R', 'NC-17'):
+                rating.set('system', 'MPAA')
 
     time.sleep(1)
 
